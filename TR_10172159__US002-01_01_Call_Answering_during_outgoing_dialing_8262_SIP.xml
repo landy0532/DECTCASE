@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172159_US002-01_01_Call_Answering_during_outgoing_dialing_8262_SIP">
+        <!-- source: generated_from_stepwise case_id=10172159 -->
+        <!-- metadata: generated_from=stepwise_v3 file=testrail_run_36926_8234_Telephony_(RBH_with_8368_).testcase_steps.stepwise.copilot.v3.json -->
+        <!-- Review status: generated_v3 -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- step 1_1: action=initiate_outgoing_call, expected=assert_displayed_incoming_call, precondition=- -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        
+        <!-- step 1_2: action=receive_incoming_call, expected=assert_dialing_screen_disappear, precondition=- -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="wait" content="2" />
+        <!-- step 1_3: action=-, expected=assert_displayed_incoming_call, precondition=- -->
+        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

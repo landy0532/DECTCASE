@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172154_US001-01_01_Dial_Digits_keying_8262_SIP">
+        <!-- source: semantic_manual_mapping case_id=10172154 -->
+        <!-- metadata: based_on=testrail_run_36926 auto_intermediate review_status=generated_v3 -->
+        <!-- Review status: generated_v3 -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+
+        <!-- Step 1: dial full number in pre-dial state -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <!-- Step 2: move cursor to middle and back to end, then to middle again -->
+        <step type="dect" action="press_key" content="left" device="1" />
+        <step type="dect" action="press_key" content="right" device="1" />
+        <step type="dect" action="press_key" content="left" device="1" />
+        <!-- Step 3: delete character before cursor and insert one digit back -->
+        <step type="dect" action="press_key" content="back" device="1" />
+        <step type="dect" action="press_key" content="0" device="1" />
+        <!-- Step 4: verify edited number is displayed -->
+        <step type="dect" action="verify_screen" content='{"text": "{device.2.ext_number}"}' device="1" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>

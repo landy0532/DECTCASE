@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172198_US007-05_01_Automatic_keypad_lock_8262_SIP">
+        <!-- source: run=36928 test_id=274744765 case_id=10172198 status_id=1 -->
+        <!-- metadata: case_id=10172198 slug=US007-05_01_Automatic_keypad_lock_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.854527+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>The DUT is in idle, Enter Settings-&gt;Security-&gt;Automatic keylock</p>
+         explain:press menu,press  down, press ok, press down 4 times, press ok, press down, press ok
+        Step 1 expected: <p>Automatic keylock screen is display:<br><span class="markdown-img-container"><img src="index.php?/attachments/get/7533" class="fr-fic fr-dib fr-fil markdown-img" width="300" id="attachment-7533" data-attachment-id="7533" data-entity-id="10172198"></span></p>
+         explain: verify text "Auto key lock"
+        Step 2 content: <p>Select the desired time interval</p>
+         explain: press down 2 times, press ok, 
+        Step 2 expected: <p>After the time arrived, the keypad will lock automatically</p>
+         explain: wait 30s
+        Step 3 content: <p>Press any key</p>
+         explain: press ok
+        Step 3 expected: <p>Display of "Long press '*' to unlock</p>
+         explain: verify text "Keylock" and "Press and hold"
+        Step 4 content: <p>When in keylock status</p>
+         explain: nothing to do in this step
+        Step 4 expected: <p>Only emergency numbers (e.g. 911 or 112) can be called without having to unlock the keypad.</p>
+         explain: dial number 911 and press offhook. verify text "Connected". press onhook. dial number device2.ext_number, verify "Keylock"
+        Step 5 content: <p>Make an incoming call</p>
+         explain: device2 dial device1.ext_number
+        Step 5 expected: <p>The call can be answer or reject</p>
+         explain: device1 press offhook, verify text "Connected"
+        Device1 must disable automacit keylock
+         explain: longpress *, press menu,press  down, press ok, press down 4 times, press ok, press down, press ok, press up 2 tims, press ok, press onhook 3 times
+        -->
+        <step type="dect" action="init" device="1" require_cap="lock_key_long_press" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- mapped_step_1: The DUT is in idle, Enter Settings->Security->Automatic keylock -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_auto_keylock" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Auto key lock"}' device="1" />
+
+        <!-- mapped_step_2: Select the desired time interval -->
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="wait" action="sleep" content="30" />
+        <step type="wait" action="sleep" content="10" />
+
+        <!-- mapped_step_3: Press any key -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_and_verify" content="ok" verify='{"text": ["Keylock", "Press and hold"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"lock": true}' device="1" />
+        <step type="wait" action="sleep" content="1" />
+
+        <!-- mapped_step_4: When in keylock status -->
+        <step type="dect" action="dial_number" content="{device.1.emergency_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Connected"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_and_verify" content="offhook" verify='{"text": ["Keylock", "Press and hold"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"lock": true}' device="1" />
+        <step type="wait" action="sleep" content="1" />
+
+        <!-- mapped_step_5: Make an incoming call -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+
+        <!-- cleanup: Device1 must disable automatic keylock -->
+        <step type="dect" action="press_key" content="*" press_type="long" device="1" />
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_auto_keylock" device="1" />
+        <step type="dect" action="press_key" content="up" device="1" />
+        <step type="dect" action="press_key" content="up" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172240_US016-07_09_Serviceability_Test_and_Diagnostic_SW_Info_8262">
+        <!-- source: run=36928 test_id=274744786 case_id=10172240 status_id=1 -->
+        <!-- metadata: case_id=10172240 slug=US016-07_09_Serviceability_Test_and_Diagnostic_SW_Info_8262 review_status=pending generated_at=2026-05-15T08:49:22.859565+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>\- Enter menu app screen</p><p>\- Type " * rtx* "&nbsp;&nbsp;(*789*)</p>
+        Step 1 expected: <p><strong>Test</strong> &nbsp;menu screen displayed</p>
+        Step 2 content: <p>\- Select/activate&nbsp;&nbsp;<strong>SW info</strong></p>
+        Step 2 expected: <p><strong>SW info</strong> screen displayed</p>
+        Step 3 content: <p>Check: Screen displayed with example:</p><p><strong>Model:</strong></p><p><strong>8234 SIP-DECT</strong></p><p><strong>SW version:</strong></p><p>&nbsp;<strong>66.80 Branch: 0003</strong></p><p><strong>Link &nbsp; date:</strong></p><p><strong>27-02-2014 &nbsp; &nbsp;13:02</strong></p>
+        Step 3 expected: <p>Screen displayed with example:</p><p id="isPasted"><strong>Model:</strong></p><p><strong>8234 SIP-DECT</strong></p><p><strong>SW version:</strong></p><p>&nbsp;<strong>66.80 Branch: 0003</strong></p><p><strong>Link &nbsp; date:</strong></p><p><strong>27-02-2014 &nbsp; &nbsp;13:02</strong></p>
+        Step 4 content: <p>Return to main <strong>Test</strong> &nbsp;menu by <strong>SK1 OK</strong> or <strong>OK</strong> key press</p>
+        Step 4 expected: <p>Return to main <strong>Test</strong> &nbsp;menu</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Enter Test menu -->
+        <step type="dect" action="navigate" content="test_menu" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Test"}' device="1" />
+        <!-- mapped_step_2: Select/activate SW info -->
+        <step type="dect" action="navigate" content="test_sw_info" device="1" />
+
+        <!-- mapped_step_3: Check: Screen displayed with example: Model: 8234 SIP-DECT SW version: 66.80 Branch: 0003 Link date: 27-02-2014 13:02 -->
+        <step type="dect" action="verify_screen" content='{"text": ["SW info", "Model", "SW version", "Branch", "Link", "date"]}' device="1" />
+        <!-- mapped_step_4: Return to main Test menu by SK1 OK or OK key press -->
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Test"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

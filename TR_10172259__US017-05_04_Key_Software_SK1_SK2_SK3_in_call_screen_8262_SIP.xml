@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172259_US017-05_04_Key_Software_SK1_SK2_SK3_in_call_screen_8262_SIP">
+        <!-- source: run=36928 test_id=274744800 case_id=10172259 status_id=1 -->
+        <!-- metadata: case_id=10172259 slug=US017-05_04_Key_Software_SK1_SK2_SK3_in_call_screen_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.864961+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p><strong>Handset in call with any distant device:</strong></p><p>In ongoing call screen,</p>
+         explain: make a call between device 1 and device 2, keep the call ongoing, verify on device 1 the call screen is displayed
+        Step 1 expected: <p>SK1 display hold icon<br>SK2 display conference icon<br>SK3 display transfer icon</p>
+         explain: verify icon hold, conference, transfer
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        
+        <!-- mapped_step_1: Handset in call with any distant device: In ongoing call screen, -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": "Connected", "hold": true, "conference": true, "transfer": true}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

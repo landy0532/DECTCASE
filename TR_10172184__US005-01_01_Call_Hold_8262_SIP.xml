@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172184_US005-01_01_Call_Hold_8262_SIP">
+        <!-- source: generated_from_stepwise case_id=10172184 -->
+        <!-- metadata: generated_from=stepwise_v3 file=testrail_run_36926_8234_Telephony_(RBH_with_8368_).testcase_steps.stepwise.copilot.v3.json -->
+        <!-- Review status: generated_v3 -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- mapped_v3_step_1: establish call between dectA and dectB -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <!-- mapped_v3_step_2: dectA hold call -->
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Hold"}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <!-- mapped_v3_step_3: dectA resume call -->
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <!-- mapped_v3_step_4: dectB hold call -->
+        <step type="dect" action="press_key" content="sk1" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Hold"}' device="2" />
+        <!-- mapped_v3_step_5: dectB resume call -->
+        <step type="dect" action="press_key" content="sk1" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

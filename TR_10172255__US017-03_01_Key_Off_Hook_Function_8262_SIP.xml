@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172255_US017-03_01_Key_Off_Hook_Function_8262_SIP">
+        <!-- source: run=36928 test_id=274744796 case_id=10172255 status_id=1 -->
+        <!-- metadata: case_id=10172255 slug=US017-03_01_Key_Off_Hook_Function_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.862734+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Handset in idle or standby:</p><p><strong>Short press "Off hook" key</strong></p>
+        Step 1 expected: <p>Enter call log in CAT-iq mode</p>
+        Step 2 content: <p>Handset in idle or standby:</p><p>\- Dial a number (any distant device) and <strong>Short press "Off hook" key</strong>.</p><p>\- Distant takes the call</p>
+        Step 2 expected: <p>Call is OK</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        
+        <!-- mapped_step_1: Handset in idle or standby: Short press "Off hook" key -->
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "All calls"}' device="1" />
+        <!-- mapped_step_2: Handset in idle or standby: \- Dial a number (any distant device) and Short press "Off hook" key . \- Distant takes the call -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": "Connected"}' device="1" />
+
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

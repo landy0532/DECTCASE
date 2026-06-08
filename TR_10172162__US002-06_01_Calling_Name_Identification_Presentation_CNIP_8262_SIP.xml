@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172162_US002-06_01_Calling_Name_Identification_Presentation_CNIP_8262_SIP">
+        <!-- source: semantic_manual_mapping case_id=10172162 -->
+        <!-- metadata: based_on=testrail_run_36926 auto_intermediate review_status=pending -->
+        <!-- Intent: validate DUT(A) name presentation on handset B during ringing and conversation -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- Step 1: A calls B, B must display caller A name during ringing and in conversation -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- Step 2: B calls A, B must display DUT(A) name during ringing and after call establishment -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

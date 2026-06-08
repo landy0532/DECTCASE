@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172253_US017-01_01_Key_On_Hook_Function_Power_Off_On_8262_SIP">
+        <!-- source: run=36928 test_id=274744794 case_id=10172253 status_id=1 -->
+        <!-- metadata: case_id=10172253 slug=US017-01_01_Key_On_Hook_Function_Power_Off_On_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.861600+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Handset in idle in any screen or in standby:</p><p><strong>Long press(es) "On hook" key</strong> (in some screens, first long press return to homepage, then a second long press is needed to get the power off screen ex in standby)</p>
+        Step 1 expected: <p>Power off screen displayed with:</p><ul><li><p><strong>idle</strong> screen</p></li><li><p><strong>Switch off</strong> text</p></li><li><p>SK1 <strong>Yes</strong> , SK3 <strong>No</strong></p></li></ul>
+        Step 2 content: <p>Press SK3 <strong>No</strong></p>
+        Step 2 expected: <p>Return to homepage</p>
+        Step 3 content: <p>Repeat step 1 and press <strong>OK</strong> or <strong>SK1 Yes</strong></p><p>Press any key to check HS is not in standby</p>
+        Step 3 expected: <ul><li><p>HS is powered off (Black screen)</p></li><li><p>No action by any key press</p></li></ul>
+        Step 4 content: <p>Handset is powered off:</p><p><strong>Long press(es) "On hook" key</strong></p>
+        Step 4 expected: <p>HS powers On:</p><p>a few seconds Startup screen displayed, then homepage</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Handset in idle in any screen or in standby: Long press(es) "On hook" key (in some screens, first long press return to homepage, then a second long press is needed to get the power off screen ex in standby) -->
+        <step type="dect" action="press_key" content="onhook" press_type="long" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Switch off", "Yes", "No"]}' device="1" />
+        <!-- mapped_step_2: Press SK3 No -->
+        <step type="dect" action="press_key" content="sk3" device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <!-- mapped_step_3: Repeat step 1 and press OK or SK1 Yes Press any key to check HS is not in standby -->
+        <step type="dect" action="press_key" content="onhook" press_type="long" device="1" />
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="wait" action="sleep" duration="2" />
+        <!-- mapped_step_4: Handset is powered off: Long press(es) "On hook" key -->
+        
+        <step type="dect" action="press_key" content="onhook" press_type="long" device="1" />
+        <step type="wait" action="sleep" duration="2" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

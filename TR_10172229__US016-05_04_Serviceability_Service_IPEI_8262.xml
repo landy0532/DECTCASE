@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172229_US016-05_04_Serviceability_Service_IPEI_8262">
+        <!-- source: run=36928 test_id=274744781 case_id=10172229 status_id=1 -->
+        <!-- metadata: case_id=10172229 slug=US016-05_04_Serviceability_Service_IPEI_8262 review_status=pending generated_at=2026-05-15T08:49:22.857636+00:00 -->
+        <!-- Review status: reviewed -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>\- Enter menu app screen</p><p>\- Type <strong><em>service</em> &nbsp;</strong> (no multitap)</p>
+        Step 1 expected: <p>Service menu screen displayed</p>
+        Step 2 content: <p>\- Select/activate&nbsp;&nbsp;<strong>IPEI</strong></p><p>\- Check next params and values (example) are present:<br><strong>Hex:</strong><br><strong>015ADAA0EE1</strong><br><strong>Dec:</strong><br><strong>05549 0659169</strong> <strong>4</strong><br><strong>Octal</strong><br><strong>053266407341</strong><br>\- Check hexadecimal value same as on label under the battery<br>\- Check each of the 3 values are present<br>\- Check return to service screen by <strong>SK1 Ok</strong> key press</p>
+        Step 2 expected: <p>\- Status screen displayed</p><p>\- Expected params and values present<br>\- Hexadecimal value same as on label under the battery<br>\- Each value is present<br>\- Return to service screen by <strong>SK1 Ok</strong> key press</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Enter Service menu -->
+        <step type="dect" action="navigate" content="service_menu" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Service menu"}' device="1" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_2: Select/activate IPEI -->
+        <step type="dect" action="navigate" content="service_ipei" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["IPEI", "Hex:", "{device.1.IPEI_hex}", "Dec:", "{device.1.IPEI_dec}", "Octal:", "{device.1.IPEI_oct}"]}' device="1" />
+        
+        <!-- mapped_step_3: Exit Status screen by "Back", "OK" or SK1 key press -->
+        <step type="dect" action="press_key" content="back" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Service menu"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+
+    </testcase>
+</testcases>

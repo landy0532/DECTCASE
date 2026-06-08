@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172215_US010-09_01_Screen_Display_Soft_Keys_8262_SIP">
+        <!-- source: run=36928 test_id=274744778 case_id=10172215 status_id=1 -->
+        <!-- metadata: case_id=10172215 slug=US010-09_01_Screen_Display_Soft_Keys_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.856147+00:00 -->
+        <!-- Review status: reviewed -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Put the handset in idle status</p>
+         explain: press onhook key
+        Step 1 expected: <p>The soft key line in idle (and not locked) is:<br>• SK1 Contact icon<br>• SK2 Central directory icon (if central directory is configured in the base)<br>• SK3 Call log icon</p>
+         explain: verify icon: contact, call log
+        Step 2 content: <p>In local application screens (like settings, call log, contacts)</p>
+         explain: press menu, press  down, press ok (go to settings page)
+        Step 2 expected: <p>Soft keys line display are contextual labels.</p>
+         explain: verify text "select". Press back key, press onhook key.
+        Step 3 content: <p>In communication</p>
+         explain: dial device2.ext_number, press offhook key. Device2 press offhook key.
+        Step 3 expected: <p>Soft keys line display are icon labels.</p>
+         explain: verify icon hold, conference, transfer
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- mapped_step_1: Put the handset in idle status -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": "true"}' device="1" />
+         <!--<step type="dect" action="verify_screen" content='{"calls": "true"}' device="1" />-->
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_2: In local application screens (like settings, call log, contacts) -->
+
+        <step type="dect" action="navigate" content="settings" device="1" />
+
+        <step type="dect" action="verify_screen" content='{"text": "Select"}' device="1" />
+        <step type="dect" action="press_key" content="back" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+
+        <!-- mapped_step_3: In communication -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="verify_screen" content='{"text": "Connected", "hold": true, "conference": true, "transfer": true}' device="1" />
+        
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

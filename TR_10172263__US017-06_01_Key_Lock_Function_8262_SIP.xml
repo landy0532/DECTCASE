@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172263_US017-06_01_Key_Lock_Function_8262_SIP">
+        <!-- source: run=37602 test_id=281885600 case_id=10172263 status_id=6 -->
+        <!-- metadata: case_id=10172263 slug=US017-06_01_Key_Lock_Function_8262_SIP review_status=pending generated_at=2026-05-19T05:39:20.982703+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>The DUT is in idle.<br>Long press "*/Lock" key</p><p>On 8254, press "*" key.</p>
+        Step 1 expected: <p>show a pop up screen "Lock?"</p>
+        Step 2 content: <p>Press sk1 Lock</p>
+        Step 2 expected: <p>“Press and hold *” pop up, and the handset is locked</p>
+        Step 3 content: <p>Press any key on the handset.</p>
+        Step 3 expected: <p>the text message “Press and hold *”or "Press and hold lock key" appears.</p>
+        Step 4 content: <p>Long press "*/Lock" key</p><p>On 8254, press "*" key.</p>
+        Step 4 expected: <p>And the phone is unlocked</p>
+        -->
+        <step type="dect" action="init" device="1" require_cap="lock_key_long_press" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+
+        <!-- mapped_step_1: The DUT is in idle. Long press "*/Lock" key On 8254, press "*" key. -->
+        <step type="dect" action="press_key" content="*" press_type="long" device="1" />
+        <step type="dect" action="verify_screen" content='{"lock": true}' device="1" />
+        <!-- mapped_step_2: Press sk1 Lock -->
+        <step type="dect" action="press_and_verify" content="sk1" verify='{"text": "Press and hold"}' device="1"  />
+        <!-- mapped_step_3: Press any key on the handset. -->
+        <step type="dect" action="press_and_verify" content="ok" verify='{"text": "Press and hold"}' device="1"  />
+        <!-- mapped_step_4: Long press "*/Lock" key On 8254, press "*" key. -->
+        <step type="dect" action="press_key" content="*" press_type="long" device="1" />
+
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

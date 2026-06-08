@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172261_US017-05_08_Key_Software_SK1_SK2_SK3_in_ringing_screen_8262_SIP">
+        <!-- source: run=36928 test_id=274744802 case_id=10172261 status_id=1 -->
+        <!-- metadata: case_id=10172261 slug=US017-05_08_Key_Software_SK1_SK2_SK3_in_ringing_screen_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.866128+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p><strong>Handset in ring state:</strong></p><p>In ring&nbsp;&nbsp;screen, <strong>Short Press SK1</strong> key (man icon for key label)</p>
+         explain: device 2 make a call to device 1, device 1 press key SK1 
+        Step 1 expected: <p>Silent, stop the ringing tone, but handset continues to display incoming call.</p>
+         explain: verify text "Alerting".audio record and check_voice is faulse,  device 2 press onhook to end the call
+        Step 2 content: <p>In ring screen, <strong>Long Press SK1</strong> key&nbsp;&nbsp;</p>
+         explain: device 2 make a call to device 1, device 1 long press key SK1 
+        Step 2 expected: <p>Silent, stop the ringing tone, but handset continues to display incoming call.</p>
+         explain: verify text "Alerting". audio record and check_voice is faulse, device 2 press onhook to end the call
+        Step 3 content: <p>In ring screen, <strong>Short Press SK2</strong> key</p>
+         explain: device 2 make a call to device 1, device 1 press key SK2
+        Step 3 expected: <p>No action</p>
+         explain: verify text "Alerting".audio record and check_voice is true,  device 2 press onhook to end the call
+        Step 4 content: <p>In ring screen, <strong>Long Press SK2</strong> key</p>
+        Step 4 expected: <p>No action</p>
+         explain: verify text "Alerting".audio record and check_voice is true, device 2 press onhook to end the call
+        Step 5 content: <p>In ring screen, <strong>Short Press SK3</strong> key</p>
+         explain: device 2 make a call to device 1, device 1 press key SK3
+        Step 5 expected: <p>Reject the call</p>
+         explain: verify text "call ended"  . device 2 press onhook to end the call
+        Step 6 content: <p>In ring screen, <strong>Long Press SK3</strong> key</p>
+         explain: device 2 make a call to device 1, device 1 long press key SK3
+        Step 6 expected: <p>Reject the call</p>
+         explain: verify text "call ended"  . device 2 press onhook to end the call
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- mapped_step_1: In ring screen, short press SK1 -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Alerting"}' device="1" />
+             
+        <step type="audio" action="record" content="testAudioFile/step1_ring_sk1_short.wav" device="1" duration="3" />
+        <step type="audio" action="check_voice" content="testAudioFile/step1_ring_sk1_short.wav" expect="false" />
+        
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_2: In ring screen, long press SK1 -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" press_type="long" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Alerting"}' device="1" />
+
+        <step type="audio" action="record" content="testAudioFile/step2_ring_sk1_long.wav" device="1" duration="3" />
+        <step type="audio" action="check_voice" content="testAudioFile/step2_ring_sk1_long.wav" expect="false" />
+
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_3: In ring screen, short press SK2 -->
+            <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" content="sk2" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Alerting"}' device="1" />
+
+        <step type="audio" action="record" content="testAudioFile/step3_ring_sk2_short.wav" device="1" duration="3" />
+        <step type="audio" action="check_voice" content="testAudioFile/step3_ring_sk2_short.wav" expect="true" />
+
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_4: In ring screen, long press SK2 -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" press_type="long" content="sk2" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Alerting"}' device="1" />
+
+        <step type="audio" action="record" content="testAudioFile/step4_ring_sk2_long.wav" device="1" duration="3" />
+        <step type="audio" action="check_voice" content="testAudioFile/step4_ring_sk2_long.wav" expect="true" />
+
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_5: In ring screen, short press SK3 -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" content="sk3" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Call ended"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_6: In ring screen, long press SK3 -->
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" press_type="long" content="sk3" device="1" />
+        <!--<step type="dect" action="verify_screen" content='{"contacts": true}' device="1" />-->
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172161_US002-04_01_Connected_Line_Number_Presentation_COLP_8262_SIP">
+        <!-- source: run=36926 case_id=10172161 -->
+        <!-- metadata: generated_from=stepwise_intents_enhanced file=testrail_run_36926_8234_Telephony_(RBH_with_8368_).testcase_steps.stepwise.copilot.v3.json -->
+        <!-- Review status: enhanced_generated -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- step 1_1: action=initiate_outgoing_call, expected=assert_displayed_number_of_phone, precondition=- -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <!-- step 1_2: action=needs_review, expected=-, precondition=- -->
+        <!-- step 1_3: action=check_call_presentation, expected=assert_displayed_name_of_phone, precondition=- -->
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- step 2_1: action=initiate_outgoing_call, expected=-, precondition=- -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <!-- step 2_2: action=needs_review, expected=-, precondition=- -->
+        <!-- step 2_3: action=take_call, expected=-, precondition=- -->
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <!-- step 2_4: action=check_call_presentation, expected=assert_displayed_number_of_phone, precondition=- -->
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

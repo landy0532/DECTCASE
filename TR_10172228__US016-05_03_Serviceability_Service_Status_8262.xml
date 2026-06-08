@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172228_US016-05_03_Serviceability_Service_Status_8262">
+        <!-- source: run=36928 test_id=274744780 case_id=10172228 status_id=1 -->
+        <!-- metadata: case_id=10172228 slug=US016-05_03_Serviceability_Service_Status_8262 review_status=pending generated_at=2026-05-15T08:49:22.857118+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Type *7378423* in menu screen&nbsp;<code>or</code> in Switch-off popup</p>
+         explain: press menu, press *, press 7, press 3, press 7, press 8, press 4, press 2, press 3, press *, wait for service menu to be displayed
+        Step 1 expected: <p>Service menu screen displayed</p>
+         explain: service menu is displayed
+        Step 2 content: <p>\- Select/activate&nbsp;&nbsp;<strong>Status</strong></p>
+         explain: press down 3 times, press ok
+        Step 2 expected: <p>Status screen is displayed with:</p><p>Base station:<br>SW version:<br>Branch:<br>HW version:<br>IP address:<br>MAC address:<br>System name:</p><p>Handset status:<br>SW version:<br>Branch:<br>HW version:<br>DECT band:<br>Battery level:<br>Model:<br>IPEI:</p>
+         explain: verify text "Base station", "SW version", "Branch", "HW version", "IP address", "MAC address", "System name", "Handset status", "SW version", "Branch", "HW version", "DECT band", "Battery level", "Model" and "IPEI"
+        Step 3 content: <p>Exit Status screen by&nbsp;&nbsp;"Back",&nbsp;&nbsp;"OK" or SK1&nbsp;&nbsp;key press</p>
+         explain: press back
+        Step 3 expected: <p>Go back to service menu</p>
+         explain: verify text "Service menu"
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Enter Service menu -->
+        <step type="dect" action="navigate" content="service_menu" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Service menu"}' device="1" />
+        <!-- mapped_step_2: Select/activate Status -->
+        <step type="dect" action="navigate" content="service_status" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Base station", "SW version", "Branch", "HW version", "IP address"]}' device="1" />
+        <!-- page down 9 -->
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["MAC address", "System name", "Handset status"]}' device="1" />
+        <!-- page down 14 -->
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["DECT band", "Battery level", "Model", "IPEI"]}' device="1" />
+        <step type="wait" action="sleep" content="1" />
+        <!-- mapped_step_3: Exit Status screen by "Back", "OK" or SK1 key press -->
+        <step type="dect" action="press_key" content="back" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Service menu"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+
+    </testcase>
+</testcases>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172163_US002-08_02_Automatic_Answer_8262_SIP">
+        <!-- source: semantic_manual_mapping case_id=10172163 -->
+        <!-- metadata: based_on=testrail_run_36926 auto_intermediate review_status=pending -->
+        <!-- Intent: verify Any key / Automatic / Normal auto-answer modes with incoming-call behavior -->
+
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- Step 1: set Auto answer to "Any key" and answer incoming call with any key -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_autoanswer" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- Step 2: set Auto answer to "Automatic" and verify incoming call is auto answered -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_autoanswer" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="wait" action="sleep" content="4" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+
+        <!-- Step 3: set Auto answer to "Normal" and verify call is NOT auto answered -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_autoanswer" device="1" />
+        <step type="dect" action="press_key" content="up" device="1" />
+        <step type="dect" action="press_key" content="up" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

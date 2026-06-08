@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172260_US017-05_07_Key_Software_SK1_SK2_SK3_in_idle_screen_8262_SIP">
+        <!-- source: run=36928 test_id=274744801 case_id=10172260 status_id=1 -->
+        <!-- metadata: case_id=10172260 slug=US017-05_07_Key_Software_SK1_SK2_SK3_in_idle_screen_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.865466+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p><strong>Handset in idle state:</strong></p><p>In idle screen, <strong>Short Press SK1</strong> key (man icon for key label)</p>
+        Step 1 expected: <p>Contacts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Local Contacts)</p>
+         explain: verify text "Contacts" 
+        Step 2 content: <p>In idle screen, <strong>Long Press SK1</strong> key&nbsp;&nbsp;</p>
+        Step 2 expected: <p>Contacts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Local Contacts)</p>
+        Step 3 content: <p>In idle screen, <strong>short Press SK2</strong> key</p>
+        Step 3 expected: <p>Central directory icon (if central directory is configured in the base)<br>Goes directly in search sub-menu</p>
+        Step 4 content: <p>In idle screen, <strong>Long Press SK2</strong> key&nbsp;&nbsp;</p>
+        Step 4 expected: <p>Central directory icon (if central directory is configured in the base)<br>Displays the directory in alphabetic order</p>
+        Step 5 content: <p>In idle screen, <strong>Short Press SK3</strong> key</p>
+        Step 5 expected: <p>Call log icon</p>
+        Step 6 content: <p>In idle screen, <strong>Long Press SK3</strong> key&nbsp;&nbsp;</p>
+        Step 6 expected: <p>Call log icon</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Handset in idle state: In idle screen, Short Press SK1 key (man icon for key label) -->
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Contacts"}' device="1" />
+
+        <!-- mapped_step_2: In idle screen, Long Press SK1 key -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" press_type="long" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Contacts"}' device="1" />
+
+        <!-- mapped_step_3: In idle screen, short Press SK2 key 
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="press_key" content="sk2" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Central directory"}' device="1" />
+        <step type="wait" action="sleep" content="1" />
+         mapped_step_4: In idle screen, Long Press SK2 key
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="press_key" press_type="long" content="sk2" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Central directory"}' device="1" />
+        <step type="wait" action="sleep" content="1" /> -->
+        <!-- mapped_step_5: In idle screen, Short Press SK3 key -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="sk3" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "All calls"}' device="1" />
+
+        <!-- mapped_step_6: In idle screen, Long Press SK3 key -->
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" press_type="long" content="sk3" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "All calls"}' device="1" />
+
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
