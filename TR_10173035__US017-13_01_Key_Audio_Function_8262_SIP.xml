@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10173035_US017-13_01_Key_Audio_Function_8262_SIP">
+        <!-- source: run=36928 test_id=274744858 case_id=10173035 status_id=1 -->
+        <!-- metadata: case_id=10173035 slug=US017-13_01_Key_Audio_Function_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.870521+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Short press silent key</p>
+        Step 1 expected: <p>None</p>
+        Step 2 content: <p>Long press silent key</p>
+        Step 2 expected: <p>Show a pop-up to activate the mode "Ringing off" regardless the vibrator activation state if not activated or to deactivate if activated<br>• to activate, it will show a pop up menu with<br>• activation "Ringing off?" SK1="Yes" SK3="No"</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Short press silent key -->
+        <step type="dect" action="press_key" content="#" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "#"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_2: Long press silent key -->
+        <step type="dect" action="press_key" content="#" press_type="long" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Ringing off", "Cancel"], "ringoff": true}' device="1" />
+        <step type="dect" action="press_key" content="sk3" device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172344_US006-23_01_Set_in_Settings_Security_8262_SIP">
+        <!-- source: run=37602 test_id=281885632 case_id=10172344 status_id=1 -->
+        <!-- metadata: case_id=10172344 slug=US006-23_01_Set_in_Settings_Security_8262_SIP review_status=pending generated_at=2026-05-19T05:39:20.964211+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>\- In application menu screen, select/activate Settings/Security</p>
+        Step 1 expected: Security screen is displayed - Phone lock - Phone Lock - Change Lock PIN - Auto key lock
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: \- In application menu screen, select/activate Settings/Security -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_security" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Security", "Phone lock", "Auto key lock"]}' device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <!-- mapped_step_2: dial lock_pin on device1 -->
+        <step type="dect" action="dial_number" content="{device.1.lock_pin}" device="1" />
+        <step type="dect" action="press_key" content="ok" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Change Lock PIN"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

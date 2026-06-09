@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172333_US006-08_01_Set_in_Settings_Status_8262_SIP">
+        <!-- source: run=36928 test_id=274744841 case_id=10172333 status_id=1 -->
+        <!-- metadata: case_id=10172333 slug=US006-08_01_Set_in_Settings_Status_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.844786+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>\- In application menu screen, select/activate Settings/Status</p>
+        Step 1 expected: <p>Status screen is displayed</p>
+        Step 2 content: <p>Check you can browse and see the following Infos:<br>• Base station:<br>&nbsp;&nbsp;&nbsp;&nbsp;• SW version<br>&nbsp;&nbsp;&nbsp;&nbsp;• HW version<br>&nbsp;&nbsp;&nbsp;&nbsp;• IP address<br>&nbsp;&nbsp;&nbsp;&nbsp;• MAC address<br>&nbsp;&nbsp;&nbsp;&nbsp;• System name<br>• Handset status:<br>&nbsp;&nbsp;&nbsp;&nbsp;• SW version (including branch and built date &amp; time)<br>&nbsp;&nbsp;&nbsp;&nbsp;• HW version<br>&nbsp;&nbsp;&nbsp;&nbsp;• DECT band<br>&nbsp;&nbsp;&nbsp;&nbsp;• Enhanced security (in GAP mode only)<br>&nbsp;&nbsp;&nbsp;&nbsp;• Battery level<br>&nbsp;&nbsp;&nbsp;&nbsp;• Model<br>&nbsp;&nbsp;&nbsp;&nbsp;• IPEI</p>
+        Step 2 expected: <p>Check all the status are OK</p>
+        Step 3 content: <p>Exit Status screen by&nbsp;&nbsp;"Back",&nbsp;&nbsp;"OK" or SK1&nbsp;&nbsp;key press</p>
+        Step 3 expected: <p>Go back to settings menu</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: \- In application menu screen, select/activate Settings/Status -->
+        <step type="dect" action="navigate" content="settings" device="1" />
+        <step type="dect" action="navigate" content="settings_status" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Status"}' device="1" />
+        <!-- mapped_step_2: Check you can browse and see the following Infos: • Base station: • SW version • HW version • IP address • MAC address • System name • Handset status: • SW version (including branch and built date & time) • HW version • DECT band • Enhanced security (in GAP mode only) • Battery level • Model • IPEI -->
+        <step type="dect" action="verify_screen" content='{"text": ["Base station", "SW version", "HW version", "IP address"]}' device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["MAC address", "System name", "Handset status"]}' device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="press_key" content="down" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["DECT band", "Battery level", "Model", "IPEI"]}' device="1" />
+        <!-- mapped_step_3: Exit Status screen by "Back", "OK" or SK1 key press -->
+        <step type="dect" action="press_key" content="sk1" device="1" />
+        <step type="dect" action="verify_screen" content='{"text": "Settings"}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+

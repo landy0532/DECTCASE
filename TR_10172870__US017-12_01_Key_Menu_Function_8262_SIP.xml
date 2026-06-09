@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="TR_10172870_US017-12_01_Key_Menu_Function_8262_SIP">
+        <!-- source: run=36928 test_id=274744857 case_id=10172870 status_id=1 -->
+        <!-- metadata: case_id=10172870 slug=US017-12_01_Key_Menu_Function_8262_SIP review_status=pending generated_at=2026-05-15T08:49:22.869890+00:00 -->
+        <!-- Review status: pending -->
+        <!-- TestRail steps (for manual mapping):
+        Step 1 content: <p>Short press menu key</p>
+        Step 1 expected: <p>Goes to the menu page</p>
+        Step 2 content: <p>Long press menu key</p>
+        Step 2 expected: <p>Same as the short press</p>
+        -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_1: Short press menu key -->
+        <step type="dect" action="press_key" content="menu" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "settings": true, "calls": true, "messaging": true}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <!-- mapped_step_2: Long press menu key -->
+        <step type="dect" action="press_key" type="long" content="menu" device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "settings": true, "calls": true, "messaging": true}' device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="close" device="1" />
+    </testcase>
+</testcases>
+
