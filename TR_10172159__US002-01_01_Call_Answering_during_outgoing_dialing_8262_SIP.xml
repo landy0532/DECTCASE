@@ -16,7 +16,7 @@
         <!-- step 1_2: action=receive_incoming_call, expected=assert_dialing_screen_disappear, precondition=- -->
         <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
         <step type="dect" action="press_key" content="offhook" device="2" />
-        <step type="dect" action="wait" content="2" />
+        <step type="wait" action="sleep" content="2" />
         <!-- step 1_3: action=-, expected=assert_displayed_incoming_call, precondition=- -->
         <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
         <step type="dect" action="press_key" content="offhook" device="1" />

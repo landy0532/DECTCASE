@@ -16,7 +16,7 @@
         <step type="dect" action="press_key" content="left" device="1" />
         <!-- Step 3: delete character before cursor and insert one digit back -->
         <step type="dect" action="press_key" content="back" device="1" />
-        <step type="dect" action="press_key" content="0" device="1" />
+        <step type="dect" action="press_key" content="6" device="1" />
         <!-- Step 4: verify edited number is displayed -->
         <step type="dect" action="verify_screen" content='{"text": "{device.2.ext_number}"}' device="1" />
 

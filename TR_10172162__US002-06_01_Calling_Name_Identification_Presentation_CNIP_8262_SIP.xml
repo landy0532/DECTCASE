@@ -24,7 +24,7 @@
         <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
         <step type="dect" action="press_key" content="offhook" device="2" />
         <step type="wait" action="sleep" content="2" />
-        <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
+        <step type="dect" action="verify_screen" content='{"text": ["Calling", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
         <step type="dect" action="press_key" content="offhook" device="1" />
         <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
 

@@ -32,7 +32,7 @@
         <step type="dect" action="press_key" content="ok" device="1" />
         <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
         <step type="dect" action="press_key" content="offhook" device="2" />
-        <step type="wait" action="sleep" content="4" />
+        <step type="wait" action="sleep" content="6" />
         <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
         <step type="dect" action="verify_screen" content='{"text": ["Connected", "{device.1.ext_number}", "{device.1.ext_name}"]}' device="2" />
         <step type="dect" action="press_key" content="onhook" device="1" />
