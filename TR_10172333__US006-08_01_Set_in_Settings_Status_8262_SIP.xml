@@ -17,9 +17,8 @@
         <!-- mapped_step_1: \- In application menu screen, select/activate Settings/Status -->
         <step type="dect" action="navigate" content="settings" device="1" />
         <step type="dect" action="navigate" content="settings_status" device="1" />
-        <step type="dect" action="verify_screen" content='{"text": "Status"}' device="1" />
         <!-- mapped_step_2: Check you can browse and see the following Infos: • Base station: • SW version • HW version • IP address • MAC address • System name • Handset status: • SW version (including branch and built date & time) • HW version • DECT band • Enhanced security (in GAP mode only) • Battery level • Model • IPEI -->
-        <step type="dect" action="verify_screen" content='{"text": ["Base station", "SW version", "HW version", "IP address"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["Status", "Base station", "SW version", "HW version", "IP address"]}' device="1" />
         <step type="dect" action="press_key" content="down" device="1" />
         <step type="dect" action="press_key" content="down" device="1" />
         <step type="dect" action="press_key" content="down" device="1" />

@@ -12,7 +12,7 @@
         <step type="dect" action="press_key" content="onhook" device="1" />
         <!-- mapped_step_1: Registered handset in idle -->
         <step type="dect" action="press_key" content="onhook" device="1" />
-        <step type="dect" action="verify_screen" content='{"text": ["{device.1.ext_name}", "{device.1.ext_number}", "re:\\d{2}:\\d{2}", "re:\\d{2}/\\d{2}/\\d{4}"]}' device="1" />
+        <step type="dect" action="verify_screen" content='{"text": ["{device.1.ext_name}", "{device.1.ext_number}", "re:\\d{2}:\\d{2}", "re:\\d{2}-\\d{2}-\\d{4}"]}' device="1" />
         <step type="dect" action="origin" device="1" />
         <step type="dect" action="close" device="1" />
     </testcase>
