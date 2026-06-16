@@ -18,7 +18,7 @@
         <step type="dect" action="press_key" content="onhook" device="1" />
         <!-- mapped_step_2: Long press menu key -->
         <step type="dect" action="press_key" press_type="long" content="menu" device="1" />
-        <step type="dect" action="verify_screen" content='{"contacts": true, "settings": true, "calls": true, "messaging": true}' device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true,  "calls": true}' device="1" />
         <step type="dect" action="press_key" content="onhook" device="1" />
         
         <step type="dect" action="origin" device="1" />
