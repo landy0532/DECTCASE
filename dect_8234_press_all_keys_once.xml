@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="DECT_device2_press_all_keys_once">
+        <!-- 1. 初始化 DECT 控制器 (device2, model=8234) -->
+        <step type="dect" action="init" device="2" />
+
+        <!-- 2. 依次按下 8234.json 中定义的每一个按键 -->
+        <step type="dect" action="press_key" content="offhook" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="press_key" content="1" device="2" />
+        <step type="dect" action="press_key" content="2" device="2" />
+        <step type="dect" action="press_key" content="3" device="2" />
+        <step type="dect" action="press_key" content="4" device="2" />
+        <step type="dect" action="press_key" content="5" device="2" />
+        <step type="dect" action="press_key" content="6" device="2" />
+        <step type="dect" action="press_key" content="7" device="2" />
+        <step type="dect" action="press_key" content="8" device="2" />
+        <step type="dect" action="press_key" content="9" device="2" />
+        <step type="dect" action="press_key" content="0" device="2" />
+        <step type="dect" action="press_key" content="*" device="2" />
+        <step type="dect" action="press_key" content="#" device="2" />
+        <step type="dect" action="press_key" content="ok" device="2" />
+        <step type="dect" action="press_key" content="right" device="2" />
+        <step type="dect" action="press_key" content="left" device="2" />
+        <step type="dect" action="press_key" content="up" device="2" />
+        <step type="dect" action="press_key" content="down" device="2" />
+        <step type="dect" action="press_key" content="sk2" device="2" />
+        <step type="dect" action="press_key" content="sk1" device="2" />
+        <step type="dect" action="press_key" content="sk3" device="2" />
+        <step type="dect" action="press_key" content="menu" device="2" />
+        <step type="dect" action="press_key" content="back" device="2" />
+
+        <!-- 3. 回原点 -->
+        <step type="dect" action="origin" device="2" />
+        <step type="wait" action="sleep" content="3" />
+
+        <!-- 4. 释放资源 -->
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

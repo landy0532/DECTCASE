@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="DECT_Camera_Position_Check">
+        <!-- 校验 camera 位置是否被遮挡：按键后拍照，人工检查截图 -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+       
+
+        <!-- Device 1: 按 0，拍照 -->
+        <step type="dect" action="press_key" content="menu" device="1" />
+        <step type="dect" action="capture" device="1" />
+        <!-- Device 1: 按 sk1，拍照 -->
+        <step type="dect" action="navigate" content="messaging" device="1" />
+        <step type="dect" action="capture" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="navigate" content="calls" device="1" />
+        <step type="dect" action="capture" device="1" />
+
+        <!-- Device 2: 按 0，拍照 -->
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="press_key" content="menu" device="2" />
+        <step type="dect" action="capture" device="2" />
+        <!-- Device 2: 按 sk1，拍照 -->
+        <step type="dect" action="navigate" content="messaging" device="2" />
+        <step type="dect" action="capture" device="2" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+         <!-- Device 2: 进入通话界面，拍照 -->
+        <step type="dect" action="navigate" content="calls" device="2" />
+        <step type="dect" action="capture" device="2" />
+
+        <step type="dect" action="press_key" content="onhook" device="1" />
+        <step type="dect" action="press_key" content="onhook" device="2" />
+        <step type="dect" action="origin" device="1" />
+        <step type="dect" action="origin" device="2" />
+        <step type="dect" action="close" device="1" />
+        <step type="dect" action="close" device="2" />
+    </testcase>
+</testcases>

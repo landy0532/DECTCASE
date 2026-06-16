@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+    <testcase name="DECT_handset_move_visual_auditory_test">
+        <!-- 1. 初始化 DECT 控制器 -->
+        <step type="dect" action="init" device="1" />
+        <step type="dect" action="init" device="2" />
+        <step type="wait" action="sleep" content="1" />
+
+        <!-- 2. 设备1拨打设备2的分机号 -->
+        <step type="dect" action="dial_number" content="{device.2.ext_number}" interval="0.3" device="1" />
+        <step type="dect" action="press_key" content="offhook" device="1"/>
+        <step type="dect" action="verify_screen" content='{"text": "{device.2.ext_number}"}' device="1"/>
+
+        <!-- 3. 设备2摘机接听 -->
+        <step type="dect" action="press_key" content="offhook" device="2"/>
+        <step type="wait" action="sleep" content="2" />
+
+        <!-- 4. 验证2号机接通 -->
+        <step type="dect" action="verify_screen" content='{"text": "Connected"}' device="2"/>
+
+        <!-- 5. 同步录音和播放 -->
+        <step type="audio" action="play_async" content="testAudioFile/women_voice_speech.wav" device="13" />
+        <step type="audio" action="record_async" content="testAudioFile/recorded_dect.wav" device="1" duration="10" />
+        <step type="wait" action="sleep" content="3" />
+        <step type="audio" action="check_voice" content="testAudioFile/recorded_dect.wav" expect="true" />
+
+        <!-- 6. 挂机 -->
+        <step type="dect" action="press_key" content="onhook" device="2"/>
+        <step type="wait" action="sleep" content="2" />
+
+        <!-- 7. 回原点并关闭 -->
+        <step type="dect" action="origin" device="1"/>
+        <step type="dect" action="origin" device="2"/>
+        <step type="dect" action="close" device="1"/>
+        <step type="dect" action="close" device="2"/>
+    </testcase>
+</testcases>
