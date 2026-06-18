@@ -23,7 +23,7 @@
         <step type="dect" action="press_key" content="onhook" device="2" />
         <!-- step 3_1: action=receive_incoming_call, expected=assert_ringing, precondition=- -->
         <step type="dect" action="dial_number" content="{device.1.ext_number}" device="2" />
-        <step type="dect" action="press_key" content="sk3" device="2" />
+        <step type="dect" action="press_key" content="offhook" device="2" />
         <step type="wait" action="sleep" content="2" />
         <step type="dect" action="verify_screen" content='{"text": ["Alerting", "{device.2.ext_number}", "{device.2.ext_name}"]}' device="1" />
         <!-- step 4_1: action=press_sk_reject, expected=assert_call_rejected, precondition=- -->

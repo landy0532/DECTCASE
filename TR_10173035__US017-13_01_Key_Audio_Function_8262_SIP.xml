@@ -20,7 +20,7 @@
         <step type="dect" action="press_key" content="#" press_type="long" device="1" />
         <step type="dect" action="verify_screen" content='{"text": ["Ringing off", "Cancel"], "ringoff": true}' device="1" />
         <step type="dect" action="press_key" content="sk3" device="1" />
-        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "calls": true}' device="1" />
         <step type="dect" action="origin" device="1" />
         <step type="dect" action="close" device="1" />
     </testcase>

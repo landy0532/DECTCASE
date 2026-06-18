@@ -21,16 +21,16 @@
         <step type="dect" action="verify_screen" content='{"text": ["Switch off", "Yes", "No"]}' device="1" />
         <!-- mapped_step_2: Press SK3 No -->
         <step type="dect" action="press_key" content="sk3" device="1" />
-        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "calls": true}' device="1" />
         <!-- mapped_step_3: Repeat step 1 and press OK or SK1 Yes Press any key to check HS is not in standby -->
         <step type="dect" action="press_key" content="onhook" press_type="long" device="1" />
         <step type="dect" action="press_key" content="sk1" device="1" />
-        <step type="wait" action="sleep" duration="2" />
+        <step type="wait" action="sleep" content="2" />
         <!-- mapped_step_4: Handset is powered off: Long press(es) "On hook" key -->
         
         <step type="dect" action="press_key" content="onhook" press_type="long" device="1" />
-        <step type="wait" action="sleep" duration="2" />
-        <step type="dect" action="verify_screen" content='{"contacts": true, "allCalls": true}' device="1" />
+        <step type="wait" action="sleep" content="2" />
+        <step type="dect" action="verify_screen" content='{"contacts": true, "calls": true}' device="1" />
         <step type="dect" action="origin" device="1" />
         <step type="dect" action="close" device="1" />
     </testcase>
